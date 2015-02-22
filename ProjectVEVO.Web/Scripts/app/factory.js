@@ -12,28 +12,27 @@
     };
 
     vevoAPI.deleteVideoBy = function (title) {
-        var dt = { 'titleToDelete': title };
-        dt = JSON.stringify(dt);
+        //var dt = { 'Key': title, 'VevoVideo': { 'Title': title, 'Description': "" } };
 
         return $http({
             method: "DELETE",
-            //async: true,            
-            data: dt,
-            //contentType: "application/json",
-            url: "http://localhost:15446/api/video/"
+            //async: true,
+            //data: {},            
+            url: "http://localhost:15446/api/video/" + "?title=" + title
 
         });
     };
 
     vevoAPI.addVideoBy = function (title, description) {
         
-        var dt = { 'Key': title, 'VevoVideo': { 'Title': title, 'Description': description } };
+        //var dt = { 'Key': title, 'VevoVideo': { 'Title': title, 'Description': description } };
 
         return $http({
-            method: "PUT",
-            async: true,            
-            data: dt,
-            url: "http://localhost:15446/api/video/"
+            method: "POST",
+            async: true,
+            //contentType: "application/json; charset=utf-8",
+            //data: dt,
+            url: "http://localhost:15446/api/video/" + "?title=" + title + "&description=" + description
         });
     }
 

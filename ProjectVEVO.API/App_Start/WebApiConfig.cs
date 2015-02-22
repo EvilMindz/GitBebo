@@ -12,10 +12,20 @@ namespace ProjectVEVO.API
             config.EnableCors();
 
             config.Routes.MapHttpRoute(
+                name: "VideoApi",
+                routeTemplate: "api/{controller}/{title}/{description}",
+                defaults: new { title = RouteParameter.Optional, description = RouteParameter.Optional, controller = "Video" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-            );
+            );            
+
+            var formatters = GlobalConfiguration.Configuration.Formatters;
+
+            formatters.Remove(formatters.XmlFormatter);
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.

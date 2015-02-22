@@ -27,8 +27,8 @@
             </div>
             <br />
             <div class="row">
-                <div class="col-xs-6">
-                    <table class="table table-hover table-condensed table-bordered">
+                <div class="col-xs-8">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Title</th>
@@ -40,12 +40,18 @@
                             <tr data-ng-repeat="video in videosList">
                                 <td>{{video.VevoVideo.Title}}</td>
                                 <td>{{video.VevoVideo.Description}}</td>
-                                <td><button id="btnRemove" data-ng-click="RemoveVideo(video.Key)">Remove</button></td>
+                                <td><button id="btnRemove" class="btn btn-xs btn-danger" data-ng-click="RemoveVideo(video.Key)">Remove</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button id="btnAdd" class="btn btn-xs btn-info" data-ng-show="AddNewVideo === false" data-ng-click="ShowAdd()">Add Video</button>
+                                    <button id="btnCancel" class="btn btn-xs btn-warning" data-ng-show="AddNewVideo" data-ng-click="Cancel()">Cancel</button>
+                                </td>
+                                <td></td>                                
+                                <td></td>                                
                             </tr>
                         </tbody>
-                    </table>
-                    <button id="btnAdd" data-ng-show="AddNewVideo === false" data-ng-click="ShowAdd()">Add</button>                    
-                    <button id="btnCancel" data-ng-show="AddNewVideo" data-ng-click="Cancel()">Cancel</button>
+                    </table>                    
                 </div>
             </div>        
             <br />

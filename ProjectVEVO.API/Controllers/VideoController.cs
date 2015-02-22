@@ -42,45 +42,54 @@ namespace ProjectVEVO.API.Controllers
         //    return "value";
         //}
 
-        //// POST api/video
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        // PUT api/video/
-        [HttpPut]
-        public bool Put([FromBody] VideosListViewModel videoVM)
+        // POST api/video
+        [HttpPost()]
+        //public bool Post([FromBody] VideosListViewModel videoVM)
+        public bool Post(string title, string description)
         {
-            if (videoVM != null)
-            {
-                IVideo video = (IVideo)videoVM.VevoVideo;
+            //if (videoVM != null)
+            //{
+            //    IVideo video = (IVideo)videoVM.VevoVideo;
 
-                if (video != null)
-                {
-                    return vidMgr.AddVideo(video);
-                }                
+            //    if (video != null)
+            //    {
+            //        return vidMgr.AddVideo(video);
+            //    }
+            //}
+
+            if (!string.IsNullOrWhiteSpace(title) && !string.IsNullOrWhiteSpace(description))
+            {
+                IVideo video = new Video() { Title = title, Description = description };
+
+                return vidMgr.AddVideo(video);
             }
 
             return false;
         }
 
-        // DELETE api/video/5
-        [HttpDelete]
-        public IHttpActionResult Delete([FromBody]string titleToDelete)
+        // PUT api/video/
+        [HttpPut]
+        public void Put([FromBody] VideosListViewModel videoVM)
         {
-            return Ok(vidMgr.DeleteVideoBy(titleToDelete));
+            
         }
 
-        //// DELETE api/video/5         
-        //public IHttpActionResult Delete([FromUri] string title)
-        //{
-        //    return Ok(vidMgr.DeleteVideoBy(title));
-        //}
+        // DELETE api/video/5
+        [HttpDelete]
+        //public IHttpActionResult Delete([FromBody] VideosListViewModel videoToDelete)
+        public IHttpActionResult Delete(string title)
+        {
+            //if (!string.IsNullOrEmpty(videoToDelete.Key))
+            //{
+            //    return Ok(vidMgr.DeleteVideoBy(videoToDelete.Key));
+            //}
 
-        //// DELETE api/video/5
-        //public IHttpActionResult Delete([FromBody] VideosListViewModel videoVM)
-        //{
-        //    return Ok(vidMgr.DeleteVideoBy(videoVM.VevoVideo as IVideo));
-        //}
+            if (!string.IsNullOrEmpty(title))
+            {
+                return Ok(vidMgr.DeleteVideoBy(title));
+            }
+
+            return NotFound();
+        }
     }
 }
