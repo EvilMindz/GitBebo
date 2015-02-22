@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>VEVO Project - Videos</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+
+        <!--Use bundling and minification before production -->
+        <!--<link rel="stylesheet" type="text/css" href="/Content/css" />-->
+
+        <link rel="stylesheet" type="text/css" href="Content/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="Content/bootstrap-theme.css" />
+        <link rel="stylesheet" type="text/css" href="Content/ng-grid.css" />
+        <link rel="stylesheet" type="text/css" href="Content/app/main.css" />
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />        
+    
+    </head>
+    <body data-ng-app="vevo" data-ng-controller="maincontroller">
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <img src="Content/Assets/Vevo_logo.svg" alt="VEVO" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xs-6">
+                    <table class="table table-hover table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>                                
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="video in videosList">
+                                <td>{{video.VevoVideo.Title}}</td>
+                                <td>{{video.VevoVideo.Description}}</td>
+                                <td><button id="btnRemove" data-ng-click="RemoveVideo(video.Key)">Remove</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button id="btnAdd" data-ng-show="AddNewVideo === false" data-ng-click="ShowAdd()">Add</button>                    
+                    <button id="btnCancel" data-ng-show="AddNewVideo" data-ng-click="Cancel()">Cancel</button>
+                </div>
+            </div>        
+            <br />
+            <div class="row" data-ng-show="AddNewVideo">
+                <div class="col-xs-6">
+                    <form class="form-horizontal" role="form" data-ng-submit="AddVideo()">
+	                    <div class="form-group">
+		                    <label class="col-md-2 control-label">Title</label>
+		                    <div class="col-md-4">
+			                    <input type="text" class="form-control" name="title" data-ng-model="Title" />
+		                    </div>
+	                    </div>
+	                    <div class="form-group">
+		                    <label class="col-md-2 control-label">Description</label>
+		                    <div class="col-md-4">
+			                    <input type="text" class="form-control" name="description" data-ng-model="Description" />
+		                    </div>
+	                    </div>	                    
+	                    <div class="form-group">								
+		                    <div style="padding-left:110px">
+			                    <input type="submit" value="Submit" class="btn btn-primary"/>                                
+		                    </div>
+	                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--Use bunding and minification beforee production-->
+        <!--<script src="/bundles/scripts"></script>-->
+
+        <script src="Scripts/jquery-2.1.3.js"></script>
+        <script src="Scripts/bootstrap.js"></script>
+        <script src="Scripts/angular.js"></script>
+        <script src="Scripts/angular-ng-grid.js"></script>
+        <script src="Scripts/app/vevo.js"></script>
+        <script src="Scripts/app/factory.js"></script>
+        <script src="Scripts/app/main.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script>
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        </script>
+    </body>
+</html>
