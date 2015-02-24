@@ -19,14 +19,16 @@
     </head>
     <body data-ng-app="vevo" data-ng-controller="maincontroller">
         <br />
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-11">
                     <img src="Content/Assets/Vevo_logo.svg" alt="VEVO" />
                 </div>
+                <div class="col-xs-1"><a id="lnkAPIHelp" class="btn btn-sm btn-default" href="//localhost:15446/help/">API Help</a></div>
             </div>
             <br />
             <div class="row">
+                <div class="loader" data-ng-show="ShowLoader"><img src="Content/Assets/spinner-gif-red.gif" alt="" /></div>
                 <div class="col-xs-8">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -72,7 +74,7 @@
 	                    </div>	                    
 	                    <div class="form-group">								
 		                    <div style="padding-left:110px">
-			                    <input type="submit" value="Submit" class="btn btn-primary"/>                                
+			                    <input type="submit" value="Submit" class="btn btn-xs btn-primary"/>                                
 		                    </div>
 	                    </div>
                     </form>
@@ -80,7 +82,7 @@
             </div>
         </div>
 
-        <!--Use bunding and minification beforee production-->
+        <!--Use bunding and minification before production-->
         <!--<script src="/bundles/scripts"></script>-->
 
         <script src="Scripts/jquery-2.1.3.js"></script>

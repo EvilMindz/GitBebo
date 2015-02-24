@@ -1,23 +1,24 @@
-﻿angular.module('vevo.controllers', []).controller('maincontroller', function ($scope, vevoAPIfactory) {
+﻿'use strict';
+
+angular.module('vevo.controllers', []).controller('maincontroller', function ($scope, vevoAPIfactory) {//injecting http and vevoAPIFactory services into main controller
 
     var init = function () {
         $scope.AddNewVideo = false;
+
+        //TODO: Use interceptor to show/hide spinners
+        $scope.ShowLoader = true;
+
+        vevoAPIfactory.getAllVideos().success(function (response) {
+            $scope.videosList = response;
+            
+            $scope.ShowLoader = false;
+        });
     }
 
     init();
-    
-    vevoAPIfactory.getAllVideos().success(function (response) {
-        $scope.videosList = response;
-    });
-
+        
     $scope.RemoveVideo = function (title) {
-        //vevoAPIfactory.deleteVideoBy(videoId).success(function (response) {
-        //    if (response === true) {
-        //        $scope.videosList.splice(videoId,1)
-        //        toastr.success("Video " + String(videoId) + " deleted successfully!");
-        //    }
-        //});
-
+        
         var index = -1;
 
         var videos = eval($scope.videosList);
@@ -32,9 +33,22 @@
             toastr.error("Video " + title + " could not be deleted due to some unknown error!");
         }
         else {
+
+            $scope.ShowLoader = true;
+
             vevoAPIfactory.deleteVideoBy($scope.videosList[index].VevoVideo.Title).success(function (response) {
+
                 $scope.videosList.splice(index, 1);
+
                 toastr.success("Video " + title + " deleted successfully!");
+
+                $scope.ShowLoader = false;
+
+            }).error(function (response, status) {
+
+                toastr.error("Error!");
+
+                $scope.ShowLoader = false;
             });
         }                
     };
@@ -43,22 +57,29 @@
         toastr.info("Submit a new video to VEVO..");
         $scope.Title = "";
         $scope.Description = "";
-        $scope.AddNewVideo = true;
+        $scope.AddNewVideo = true;        
     };
 
     $scope.AddVideo = function () {
-        
+
+        $scope.ShowLoader = true;
+
         vevoAPIfactory.addVideoBy($scope.Title, $scope.Description).success(function (response) {
 
             if (response === true) {
                 $scope.videosList.push({ 'Key': $scope.Title, 'VevoVideo': { 'Title': $scope.Title, 'Description': $scope.Description } });
-                toastr.success("Video " + $scope.Title + " added successfully!");
+                toastr.success("Video " + $scope.Title + " added successfully!");                
             }
             else {
                 toastr.error("Video " + $scope.Title + " could not be added due to error!");
             }
-        }).error(function (xhr,status,response) {
+
+            $scope.ShowLoader = false;
+
+        }).error(function (response,status) {
             toastr.error("Error!");
+
+            $scope.ShowLoader = false;
         });
 
         $scope.AddNewVideo = false;
@@ -66,7 +87,7 @@
 
     $scope.Cancel = function () {
         toastr.success("Canceled!");
-        $scope.AddNewVideo = false;
+        $scope.AddNewVideo = false;        
     };
 
 });

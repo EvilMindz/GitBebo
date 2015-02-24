@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\app\main.css" />
+    <Content Include="Content\Assets\spinner-gif-red.gif" />
     <Content Include="Content\Assets\Vevo_logo.svg" />
     <Content Include="Content\ng-grid.css" />
     <Content Include="Global.asax" />
