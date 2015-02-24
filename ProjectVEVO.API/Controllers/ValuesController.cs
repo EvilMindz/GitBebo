@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace ProjectVEVO.API.Controllers
 {
-    public class ValuesController : ApiController
+    class ValuesController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()

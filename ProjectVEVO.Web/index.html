@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>VEVO Project - Videos</title>
+        <title>VEVO Project - Video List</title>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -19,7 +19,7 @@
     </head>
     <body data-ng-app="vevo" data-ng-controller="maincontroller">
         <br />
-        <div class="container-fluid">
+        <div class="container"> <!---fluid-->
             <div class="row">
                 <div class="col-xs-11">
                     <img src="Content/Assets/Vevo_logo.svg" alt="VEVO" />
@@ -28,7 +28,7 @@
             </div>
             <br />
             <div class="row">
-                <div class="loader" data-ng-show="ShowLoader"><img src="Content/Assets/spinner-gif-red.gif" alt="" /></div>
+                <div class="loader" data-ng-show="showLoader"><img src="Content/Assets/spinner-gif-red.gif" alt="" /></div>
                 <div class="col-xs-8">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -40,14 +40,14 @@
                         </thead>
                         <tbody>
                             <tr data-ng-repeat="video in videosList">
-                                <td>{{video.VevoVideo.Title}}</td>
-                                <td>{{video.VevoVideo.Description}}</td>
-                                <td><button id="btnRemove" class="btn btn-xs btn-danger" data-ng-click="RemoveVideo(video.Key)">Remove</button></td>
+                                <td>{{video.vevoVideo.title}}</td>
+                                <td>{{video.vevoVideo.description}}</td>
+                                <td><button id="btnRemove" class="btn btn-xs btn-danger" data-ng-click="removeVideo(video.key)">Remove</button></td>
                             </tr>
                             <tr>
                                 <td>
-                                    <button id="btnAdd" class="btn btn-xs btn-info" data-ng-show="AddNewVideo === false" data-ng-click="ShowAdd()">Add Video</button>
-                                    <button id="btnCancel" class="btn btn-xs btn-warning" data-ng-show="AddNewVideo" data-ng-click="Cancel()">Cancel</button>
+                                    <button id="btnAdd" class="btn btn-xs btn-info" data-ng-show="addNewVideo === false" data-ng-click="showAddVideo()">Add Video</button>
+                                    <button id="btnCancel" class="btn btn-xs btn-warning" data-ng-show="addNewVideo" data-ng-click="cancel()">Cancel</button>
                                 </td>
                                 <td></td>                                
                                 <td></td>                                
@@ -57,25 +57,27 @@
                 </div>
             </div>        
             <br />
-            <div class="row" data-ng-show="AddNewVideo">
+            <div class="row" data-ng-show="addNewVideo">
                 <div class="col-xs-6">
-                    <form class="form-horizontal" role="form" data-ng-submit="AddVideo()">
+                    <form class="form-horizontal" data-novalidate="novalidate" name="vevoForm" role="form" data-ng-submit="addVideo()">
 	                    <div class="form-group">
-		                    <label class="col-md-2 control-label">Title</label>
-		                    <div class="col-md-4">
-			                    <input type="text" class="form-control" name="title" data-ng-model="Title" />
+		                    <label id="title" class="col-xs-2 control-label">Title</label>
+		                    <div class="col-xs-5">
+			                    <input type="text" placeholder="Enter Video Title" class="form-control" name="title" data-ng-model="title" data-required="required"/>                                
 		                    </div>
+                            <div class="col-xs-2"><small class="label label-danger" data-ng-show="vevoForm.title.$error.required && formSubmitted"><small class="glyphicon glyphicon-alert" title="required"></small></small></div>
 	                    </div>
 	                    <div class="form-group">
-		                    <label class="col-md-2 control-label">Description</label>
-		                    <div class="col-md-4">
-			                    <input type="text" class="form-control" name="description" data-ng-model="Description" />
+		                    <label id ="description" class="col-xs-2 control-label">Description</label>
+		                    <div class="col-xs-5">
+			                    <input type="text" placeholder="Enter Description" class="form-control" name="description" data-ng-model="description" data-required="required"/>                                
 		                    </div>
+                            <div class="col-xs-2"><small class="label label-danger" data-ng-show="vevoForm.description.$error.required && formSubmitted"><small class="glyphicon glyphicon-alert" title="required"></small></small></div>
 	                    </div>	                    
-	                    <div class="form-group">								
-		                    <div style="padding-left:110px">
-			                    <input type="submit" value="Submit" class="btn btn-xs btn-primary"/>                                
-		                    </div>
+	                    <div class="form-group">
+                            <div class="col-xs-4 col-xs-offset-2">
+			                    <input type="submit" value="Submit" class="btn btn-xs btn-primary"/>                                		                    
+                            </div>
 	                    </div>
                     </form>
                 </div>
@@ -94,6 +96,7 @@
         <script src="Scripts/app/main.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script>
+            //Error/Message Notification
             toastr.options = {
                 "closeButton": false,
                 "debug": false,

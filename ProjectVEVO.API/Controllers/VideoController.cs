@@ -17,7 +17,7 @@ namespace ProjectVEVO.API.Controllers
     public class VideoController : ApiController
     {
         private IVideoManager vidMgr;
-        private ConcurrentDictionary<string, IVideo> videosList;
+        private ConcurrentDictionary<string, IVideo> videosDict;
 
         public VideoController(IVideoManager videoMgr)
         {
@@ -31,32 +31,29 @@ namespace ProjectVEVO.API.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            videosList = vidMgr.GetAllVideos();
+            videosDict = vidMgr.GetAllVideos();
 
-            return Ok(videosList.Select(src => new VideosListViewModel() { Key = src.Key.ToString(), VevoVideo = src.Value }).ToList());
+            if (videosDict != null)
+            {
+
+                return Ok(videosDict.Select(src => new VideosDictViewModel() { Key = src.Key.ToString(), VevoVideo = src.Value }).ToList());
+            }
+
+            return NotFound();
+            
         }
 
-        //// GET api/video/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        // GET api/video/5
+        [NonAction()]
+        public string Get(int id)
+        {
+            return "value";
+        }
 
         // POST api/video
-        [HttpPost()]
-        //public bool Post([FromBody] VideosListViewModel videoVM)
+        [HttpPost()]        
         public bool Post(string title, string description)
-        {
-            //if (videoVM != null)
-            //{
-            //    IVideo video = (IVideo)videoVM.VevoVideo;
-
-            //    if (video != null)
-            //    {
-            //        return vidMgr.AddVideo(video);
-            //    }
-            //}
-
+        {            
             if (!string.IsNullOrWhiteSpace(title) && !string.IsNullOrWhiteSpace(description))
             {
                 IVideo video = new Video() { Title = title, Description = description };
@@ -66,24 +63,20 @@ namespace ProjectVEVO.API.Controllers
 
             return false;
         }
-
+        
         // PUT api/video/
         [HttpPut]
-        public void Put([FromBody] VideosListViewModel videoVM)
+        [NonAction()]
+        public void Put([FromBody] VideosDictViewModel videoVM)
         {
             
         }
 
         // DELETE api/video/5
         [HttpDelete]
-        //public IHttpActionResult Delete([FromBody] VideosListViewModel videoToDelete)
+        //public IHttpActionResult Delete([FromBody] VideosDictViewModel videoToDelete)
         public IHttpActionResult Delete(string title)
-        {
-            //if (!string.IsNullOrEmpty(videoToDelete.Key))
-            //{
-            //    return Ok(vidMgr.DeleteVideoBy(videoToDelete.Key));
-            //}
-
+        {            
             if (!string.IsNullOrEmpty(title))
             {
                 return Ok(vidMgr.DeleteVideoBy(title));
@@ -91,5 +84,34 @@ namespace ProjectVEVO.API.Controllers
 
             return NotFound();
         }
+
+        // DELETE api/video/5
+        //[HttpDelete]
+        //public IHttpActionResult Delete([FromBody] VideosDictViewModel videoToDelete)        
+        //{
+        //    if (videoToDelete != null && !string.IsNullOrEmpty(videoToDelete.Key))
+        //    {
+        //        return Ok(vidMgr.DeleteVideoBy(videoToDelete.Key));
+        //    }
+
+        //    return NotFound();
+        //}
+
+        // POST api/video
+        //[HttpPost()]
+        //public IHttpActionResult Post([FromBody] VideosDictViewModel videoVM)        
+        //{
+        //    if (videoVM != null)
+        //    {
+        //        IVideo video = (IVideo)videoVM.VevoVideo;
+
+        //        if (video != null)
+        //        {
+        //            return Ok(vidMgr.AddVideo(video));
+        //        }
+        //    }
+
+        //    return NotFound();
+        //}
     }
 }

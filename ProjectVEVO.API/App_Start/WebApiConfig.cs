@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -11,6 +12,11 @@ namespace ProjectVEVO.API
         {
             config.EnableCors();
 
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            var formatters = GlobalConfiguration.Configuration.Formatters;
+            formatters.Remove(formatters.XmlFormatter);
+            
             config.Routes.MapHttpRoute(
                 name: "VideoApi",
                 routeTemplate: "api/{controller}/{title}/{description}",
@@ -23,9 +29,6 @@ namespace ProjectVEVO.API
                 defaults: new { id = RouteParameter.Optional }
             );            
 
-            var formatters = GlobalConfiguration.Configuration.Formatters;
-
-            formatters.Remove(formatters.XmlFormatter);
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.
@@ -34,6 +37,7 @@ namespace ProjectVEVO.API
 
             // To disable tracing in your application, please comment out or remove the following line of code
             // For more information, refer to: http://www.asp.net/web-api
+            //Tracing has been turned off
             //config.EnableSystemDiagnosticsTracing();
         }
     }

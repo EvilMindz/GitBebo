@@ -10,8 +10,8 @@ namespace ProjectVEVO.BL
 {
     public class VideoManager:IVideoManager
     {
-        private ConcurrentDictionary<string, IVideo> safeVideoList;
-        private const string ThreadSafeVideoList = "ThreadSafeVideoList";
+        private ConcurrentDictionary<string, IVideo> safeVideoDict;
+        private const string ThreadsafeVideoDict = "ThreadsafeVideoDict";
         private IVideo video;
 
 
@@ -19,15 +19,15 @@ namespace ProjectVEVO.BL
         {
             try
             {                
-                safeVideoList = GetCachedDictionary(true);
+                safeVideoDict = GetCachedDictionary(true);
             }
             catch
             {
-                safeVideoList = null;
+                safeVideoDict = null;
                 throw;
             }
 
-            return safeVideoList;
+            return safeVideoDict;
         }
 
         private ConcurrentDictionary<string, IVideo> GetCachedDictionary(bool createNewIfEmpty)
@@ -37,7 +37,7 @@ namespace ProjectVEVO.BL
             try
             {
 
-                var cachedObjectList = MemCacheUtil.GetCachedObject(ThreadSafeVideoList);
+                var cachedObjectList = MemCacheUtil.GetCachedObject(ThreadsafeVideoDict);
 
                 if (cachedObjectList != null)
                 {
@@ -61,7 +61,7 @@ namespace ProjectVEVO.BL
                             cachedDictionary.TryAdd(vid.Title, vid);
                         }
 
-                        MemCacheUtil.Add(ThreadSafeVideoList, cachedDictionary, DateTimeOffset.UtcNow.AddHours(24));
+                        MemCacheUtil.Add(ThreadsafeVideoDict, cachedDictionary, DateTimeOffset.UtcNow.AddHours(24));
                         //TODO: Remove once code is complete - END
                     }
                 }
@@ -77,24 +77,39 @@ namespace ProjectVEVO.BL
 
         public bool AddVideo(IVideo video)
         {
-            bool status = false;            
+            bool status = false;
 
             try
             {
                 if (video != null)
                 {
                     if (!string.IsNullOrEmpty(video.Title) && !string.IsNullOrEmpty(video.Description))
-                    {             
-                        safeVideoList = GetCachedDictionary(true);
+                    {
+                        safeVideoDict = GetCachedDictionary(true);
 
-                        safeVideoList.TryAdd(video.Title, video);
+                        safeVideoDict.TryAdd(video.Title, video);
 
                         status = true;
+                    }
+                    else
+                    {
 
-                        //status = MemCacheUtil.Add(ThreadSafeVideoList, safeVideoList, DateTimeOffset.UtcNow.AddHours(24));
+                        throw new ArgumentException("Video title and/or description is invalid or missing.");
                     }
                 }
+                else
+                {
+                    throw new ArgumentNullException("IVideo cannot be null.");
+                }
             }
+            //catch (ArgumentNullException ex)
+            //{
+            //    throw ex;
+            //}
+            //catch (ArgumentException e)
+            //{
+            //    throw e;
+            //}
             catch
             {
                 throw;
@@ -113,10 +128,13 @@ namespace ProjectVEVO.BL
                 {
                     status = DeleteVideoBy(video.Title);
                 }
+                else
+                {
+                    throw new ArgumentNullException("IVideo cannot be null.");
+                }
             }
             catch
-            {
-                status = false;
+            {                
                 throw;
             }
 
@@ -130,17 +148,13 @@ namespace ProjectVEVO.BL
             try
             {                
                 if (!string.IsNullOrWhiteSpace(title))
-                {
-                    //TODO: What if cachedObjectList is not yet available? Will this condition ever arise? - 
-                    //DONE: handled in test
-                    safeVideoList = GetCachedDictionary(false);
+                {                    
+                    safeVideoDict = GetCachedDictionary(false);
 
-                    if (safeVideoList != null)
+                    if (safeVideoDict != null)
                     {
-                        status = safeVideoList.TryRemove(title, out video);
-
-                        //TODO: What if title is not found in the list because somebody already deleted it? - 
-                        //DONE: handled in test
+                        status = safeVideoDict.TryRemove(title, out video);
+                        
                         if (video != null)
                         {
                             status = true;

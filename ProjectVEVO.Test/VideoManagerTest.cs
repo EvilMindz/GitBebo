@@ -18,22 +18,23 @@ namespace ProjectVEVO.Test
         #region "Unit Tests for adding a video"
 
         [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void TestAddVideoForNull()
-        {
-            bool expected = false;
-
+        {            
             IVideoManager vidMgr = new VideoManager();
             IVideo video = null;
 
-            var result = vidMgr.AddVideo(video);
+            var result = vidMgr.AddVideo(video);            
 
-            Assert.AreEqual(expected, result, "TestAddVideoForNull failed");            
+            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() => { throw new ArgumentNullException(); });
+
+            Assert.That(ex.Message,Is.EqualTo("IVideo cannot be null"));
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestAddVideoForMissingTitle()
-        {
-            bool expected = false;
+        {            
 
             IVideoManager vidMgr = new VideoManager();
             IVideo video = new Video();
@@ -42,17 +43,18 @@ namespace ProjectVEVO.Test
             video.Description = "Test Description";
 
 
-            var result = vidMgr.AddVideo(video);
+            var result = vidMgr.AddVideo(video);            
 
-            Assert.AreEqual(expected, result, "TestAddVideoForMissingTitle failed");    
+            ArgumentException ex = Assert.Throws<ArgumentException>(() => { throw new ArgumentException(); });
+
+            Assert.That(ex.Message, Is.EqualTo("Video title and/or description is invalid or missing"));
 
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestAddVideoForMissingDescription()
-        {
-            bool expected = false;
-
+        {            
             IVideoManager vidMgr = new VideoManager();
 
             IVideo video = new Video();
@@ -62,8 +64,10 @@ namespace ProjectVEVO.Test
 
 
             var result = vidMgr.AddVideo(video);
+            
+            ArgumentException ex = Assert.Throws<ArgumentNullException>(() => { throw new ArgumentException(); });
 
-            Assert.AreEqual(expected, result, "TestAddVideoForMissingDescription failed");
+            Assert.That(ex.Message, Is.EqualTo("Video title and/or description is invalid or missing"));
 
         }
 
@@ -90,21 +94,19 @@ namespace ProjectVEVO.Test
 
         #region "Unit Tests for deleting a video"
         [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void TestDeleteVideoForNull()
         {
-            bool expected = false;
-
+           
             IVideoManager vidMgr = new VideoManager();
 
-            IVideo video = new Video();
-            
-            video.Title = "Test Title";
-            video.Description = string.Empty;
+            IVideo video = null;            
 
+            var result = vidMgr.AddVideo(video);            
 
-            var result = vidMgr.AddVideo(video);
+            ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() => { throw new ArgumentNullException(); });
 
-            Assert.AreEqual(expected, result, "TestAddVideoForMissingDescription failed");
+            Assert.That(ex.Message, Is.EqualTo("IVideo cannot be null"));
         }
 
         [Test]
