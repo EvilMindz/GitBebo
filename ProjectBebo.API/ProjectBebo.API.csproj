@@ -323,7 +323,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectVEVO.BL\ProjectBebo.BL.csproj">
+    <ProjectReference Include="..\ProjectBebo.BL\ProjectBebo.BL.csproj">
       <Project>{fd849da9-56ae-4639-83d1-5f7814041963}</Project>
       <Name>ProjectBebo.BL</Name>
     </ProjectReference>

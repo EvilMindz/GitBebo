@@ -1,18 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBebo.Web", "ProjectVEVO.Web\ProjectBebo.Web.csproj", "{2D30A587-2A7D-4E62-A07E-B6B7B6D3F274}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBebo.Web", "ProjectBebo.Web\ProjectBebo.Web.csproj", "{2D30A587-2A7D-4E62-A07E-B6B7B6D3F274}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBebo.API", "ProjectVEVO.API\ProjectBebo.API.csproj", "{568D9EE0-A238-4411-B288-66D60A8A7621}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBebo.API", "ProjectBebo.API\ProjectBebo.API.csproj", "{568D9EE0-A238-4411-B288-66D60A8A7621}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBebo.BL", "ProjectVEVO.BL\ProjectBebo.BL.csproj", "{FD849DA9-56AE-4639-83D1-5F7814041963}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBebo.BL", "ProjectBebo.BL\ProjectBebo.BL.csproj", "{FD849DA9-56AE-4639-83D1-5F7814041963}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0B92F0B1-5E1F-4FB0-954D-47340F025542}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBebo.Test", "ProjectVEVO.Test\ProjectBebo.Test.csproj", "{7BAC30D7-CDC8-47B8-B58D-516A7A9F5C24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBebo.Test", "ProjectBebo.Test\ProjectBebo.Test.csproj", "{7BAC30D7-CDC8-47B8-B58D-516A7A9F5C24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
