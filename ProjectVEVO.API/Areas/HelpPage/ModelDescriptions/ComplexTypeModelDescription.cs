@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace ProjectVEVO.API.Areas.HelpPage.ModelDescriptions
+namespace ProjectBebo.API.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

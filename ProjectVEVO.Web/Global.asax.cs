@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
+using System.Web.Optimization;
 //using System.Web.Security;
 //using System.Web.SessionState;
-using System.Web.Optimization;
 
-namespace ProjectVEVO.Web
+namespace ProjectBebo.Web
 {
-    public class VEVOWebApp: System.Web.HttpApplication
+    public class BeboWebApp: HttpApplication
     {
 
         protected void Application_Start(object sender, EventArgs e)

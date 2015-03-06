@@ -1,4 +1,4 @@
-﻿angular.module('vevo.controllers', []).controller('maincontroller', function ($scope, vevoAPIfactory) {//injecting http and vevoAPIFactory services into main controller
+﻿angular.module('Bebo.controllers', []).controller('maincontroller', function ($scope, BeboAPIfactory) {//injecting http and BeboAPIFactory services into main controller
     'use strict';
 
 
@@ -12,7 +12,7 @@
         //TODO: Use interceptor to show/hide spinner
         $scope.showLoader = true;
 
-        vevoAPIfactory.getAllVideos().success(function (response) {
+        BeboAPIfactory.getAllVideos().success(function (response) {
             $scope.videosList = response;
 
             $scope.showLoader = false;
@@ -26,7 +26,7 @@
 
         var videos = eval($scope.videosList);
         for (var i = 0; i < videos.length; i++) {
-            if (videos[i].vevoVideo.title === title) {
+            if (videos[i].beboVideo.title === title) {
                 index = i;
                 break;
             }
@@ -39,7 +39,7 @@
 
             $scope.showLoader = true;
 
-            vevoAPIfactory.deleteVideoBy($scope.videosList[index].vevoVideo.title).success(function (response) {
+            BeboAPIfactory.deleteVideoBy($scope.videosList[index].beboVideo.title).success(function (response) {
 
                 $scope.videosList.splice(index, 1);
 
@@ -58,7 +58,7 @@
 
     ///Show Add Video Div conditionally
     $scope.showAddVideo = function () {
-        toastr.info("Submit a new video to VEVO..");
+        toastr.info("Submit a new video to Bebo..");
         $scope.formSubmitted = false;
         $scope.title = "";
         $scope.description = "";
@@ -72,14 +72,14 @@
         $scope.formSubmitted = true;
 
         //Angularjs Page Validation
-        if ($scope.vevoForm.$valid) {
+        if ($scope.BeboForm.$valid) {
 
             $scope.showLoader = true;
 
-            vevoAPIfactory.addVideoBy($scope.title, $scope.description).success(function (response) {
+            BeboAPIfactory.addVideoBy($scope.title, $scope.description).success(function (response) {
 
                 if (response === true) {
-                    $scope.videosList.push({ 'key': $scope.title, 'vevoVideo': { 'title': $scope.title, 'description': $scope.description } });
+                    $scope.videosList.push({ 'key': $scope.title, 'beboVideo': { 'title': $scope.title, 'description': $scope.description } });
                     toastr.success("Video " + $scope.title + " added successfully!");
                 }
                 else {
@@ -98,11 +98,11 @@
         }
         //else {
 
-        //    if ($scope.vevoForm.title.$error.required) {
+        //    if ($scope.BeboForm.title.$error.required) {
         //        toastr.warning("Title is required.")
         //    }
 
-        //    if ($scope.vevoForm.description.$error.required) {
+        //    if ($scope.BeboForm.description.$error.required) {
         //        toastr.warning("Description is required.")
         //    }            
         //}

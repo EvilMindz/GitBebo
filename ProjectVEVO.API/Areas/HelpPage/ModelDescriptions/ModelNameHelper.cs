@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace ProjectVEVO.API.Areas.HelpPage.ModelDescriptions
+namespace ProjectBebo.API.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

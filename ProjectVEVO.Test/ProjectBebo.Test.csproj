@@ -71,13 +71,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectVEVO.API\ProjectVEVO.API.csproj">
+    <ProjectReference Include="..\ProjectVEVO.API\ProjectBebo.API.csproj">
       <Project>{568d9ee0-a238-4411-b288-66d60a8a7621}</Project>
-      <Name>ProjectVEVO.API</Name>
+      <Name>ProjectBebo.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProjectVEVO.BL\ProjectVEVO.BL.csproj">
+    <ProjectReference Include="..\ProjectVEVO.BL\ProjectBebo.BL.csproj">
       <Project>{fd849da9-56ae-4639-83d1-5f7814041963}</Project>
-      <Name>ProjectVEVO.BL</Name>
+      <Name>ProjectBebo.BL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

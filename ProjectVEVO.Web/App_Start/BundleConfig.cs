@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web.Optimization;
 
-using System.Web.Optimization;
-
-namespace ProjectVEVO.Web
+namespace ProjectBebo.Web
 {
     public class BundleConfig
     {
@@ -22,7 +17,7 @@ namespace ProjectVEVO.Web
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                 "~/Scripts/jquery-{version}.min.js",
                 "~/Scripts/bootstrap.min.js",
-                "~/Scripts/app/vevo.js",
+                "~/Scripts/app/Bebo.js",
                 "~/Scripts/app/factory.js",
                 "~/Scripts/app/main.js"
                 ));

@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace ProjectVEVO.API.Areas.HelpPage
+namespace ProjectBebo.API.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

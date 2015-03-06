@@ -1,10 +1,7 @@
-﻿using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Newtonsoft.Json.Serialization;
 
-namespace ProjectVEVO.API
+namespace ProjectBebo.API
 {
     public static class WebApiConfig
     {

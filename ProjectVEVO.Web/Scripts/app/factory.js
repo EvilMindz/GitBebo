@@ -1,39 +1,39 @@
-﻿angular.module('vevo.factory', []).factory('vevoAPIfactory', function ($http) {//api factory
+﻿angular.module('Bebo.factory', []).factory('BeboAPIfactory', function ($http) {//api factory
     'use strict';
 
     //AngularJS Factory
-    var vevoAPI = {};
+    var beboAPI = {};
 
-    var vevoAPIURI = "http://localhost:15446/api/video/";
+    var beboAPIURI = "http://localhost:15446/api/video/";
 
     //Api to GET all videos from persistence
-    vevoAPI.getAllVideos = function () {
+    beboAPI.getAllVideos = function () {
         return $http({
             method: "GET",            
             async: true,            
-            url: vevoAPIURI
+            url: beboAPIURI
 
         });
     };
 
     //Api to DELETE a video title from persistence
-    vevoAPI.deleteVideoBy = function (title) {        
+    beboAPI.deleteVideoBy = function (title) {
         return $http({
             method: "DELETE",
             async: true,
-            url: vevoAPIURI + title
+            url: beboAPIURI + title
 
         });
     };
 
     //Api to POST add a new title and description for a video to persistence
-    vevoAPI.addVideoBy = function (title, description) {
+    beboAPI.addVideoBy = function (title, description) {
         return $http({
             method: "POST",
             async: true,            
-            url: vevoAPIURI + title + "/" + description
+            url: beboAPIURI + title + "/" + description
         });
     };
 
-    return vevoAPI;
+    return beboAPI;
 });

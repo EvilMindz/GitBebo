@@ -1,4 +1,4 @@
-namespace ProjectVEVO.API.Areas.HelpPage.ModelDescriptions
+namespace ProjectBebo.API.Areas.HelpPage.ModelDescriptions
 {
     public class EnumValueDescription
     {

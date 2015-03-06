@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using ProjectVEVO.API.Areas.HelpPage.ModelDescriptions;
-using ProjectVEVO.API.Areas.HelpPage.Models;
+using ProjectBebo.API.Areas.HelpPage.ModelDescriptions;
+using ProjectBebo.API.Areas.HelpPage.Models;
 
-namespace ProjectVEVO.API.Areas.HelpPage
+namespace ProjectBebo.API.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

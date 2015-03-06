@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace ProjectVEVO.API.Areas.HelpPage.ModelDescriptions
+namespace ProjectBebo.API.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

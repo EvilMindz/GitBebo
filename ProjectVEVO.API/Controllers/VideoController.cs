@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-
-using System.Collections.Concurrent;
 using System.Web.Http.Cors;
+using ProjectBebo.API.Models;
+using ProjectBebo.BL;
 
-using ProjectVEVO.BL;
-using ProjectVEVO.API.Models;
-
-namespace ProjectVEVO.API.Controllers
+namespace ProjectBebo.API.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class VideoController : ApiController
@@ -36,7 +30,7 @@ namespace ProjectVEVO.API.Controllers
             if (videosDict != null)
             {
 
-                return Ok(videosDict.Select(src => new VideosDictViewModel() { Key = src.Key.ToString(), VevoVideo = src.Value }).ToList());
+                return Ok(videosDict.Select(src => new VideosDictViewModel() { Key = src.Key.ToString(), BeboVideo = src.Value }).ToList());
             }
 
             return NotFound();
@@ -103,7 +97,7 @@ namespace ProjectVEVO.API.Controllers
         //{
         //    if (videoVM != null)
         //    {
-        //        IVideo video = (IVideo)videoVM.VevoVideo;
+        //        IVideo video = (IVideo)videoVM.BeboVideo;
 
         //        if (video != null)
         //        {

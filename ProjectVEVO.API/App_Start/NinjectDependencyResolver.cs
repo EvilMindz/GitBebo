@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-using Ninject;
 using System.Web.Http.Dependencies;
+using Ninject;
 using Ninject.Syntax;
 
-namespace ProjectVEVO.API
+namespace ProjectBebo.API
 {
     // Provides a Ninject implementation of IDependencyScope
     // which resolves services using the Ninject container.
@@ -28,7 +25,7 @@ namespace ProjectVEVO.API
             return resolver.TryGet(serviceType);
         }
 
-        public System.Collections.Generic.IEnumerable<object> GetServices(Type serviceType)
+        public IEnumerable<object> GetServices(Type serviceType)
         {
             if (resolver == null)
                 throw new ObjectDisposedException("this", "This scope has been disposed");

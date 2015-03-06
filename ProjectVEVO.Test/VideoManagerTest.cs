@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using ProjectVEVO.BL;
 using NUnit.Framework;
+using ProjectBebo.BL;
 
-namespace ProjectVEVO.Test
+namespace ProjectBebo.Test
 {
     [TestFixture]
     public class VideoManagerTest
@@ -24,7 +19,7 @@ namespace ProjectVEVO.Test
             IVideoManager vidMgr = new VideoManager();
             IVideo video = null;
 
-            var result = vidMgr.AddVideo(video);            
+            var result = vidMgr.AddVideo(video: video);            
 
             ArgumentNullException ex = Assert.Throws<ArgumentNullException>(() => { throw new ArgumentNullException(); });
 
@@ -80,8 +75,8 @@ namespace ProjectVEVO.Test
 
             IVideo video = new Video();
             
-            video.Title = "Vevo Video";
-            video.Description = "Vevo video Description";
+            video.Title = "Bebo Video";
+            video.Description = "Bebo video Description";
 
 
             var result = vidMgr.AddVideo(video);

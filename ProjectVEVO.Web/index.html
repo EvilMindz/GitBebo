@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>VEVO Project - Video List</title>
+        <title>Bebo Project - Video List</title>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <!--<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />-->
         <meta name="viewport" content="width=device-width" />
 
         <!--Use bundling and minification before production -->
@@ -17,12 +17,12 @@
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />        
     
     </head>
-    <body data-ng-app="vevo" data-ng-controller="maincontroller">
+    <body data-ng-app="Bebo" data-ng-controller="maincontroller">
         <br />
         <div class="container"> <!---fluid-->
             <div class="row">
                 <div class="col-xs-11">
-                    <img src="Content/Assets/Vevo_logo.svg" alt="VEVO" />
+                    <img src="Content/Assets/bebo_logo_300px.jpg" class="imgBebo" alt="Bebo" />
                 </div>
                 <div class="col-xs-1"><a id="lnkAPIHelp" class="btn btn-sm btn-default" href="//localhost:15446/help/">API Help</a></div>
             </div>
@@ -40,8 +40,8 @@
                         </thead>
                         <tbody>
                             <tr data-ng-repeat="video in videosList">
-                                <td>{{video.vevoVideo.title}}</td>
-                                <td>{{video.vevoVideo.description}}</td>
+                                <td>{{video.beboVideo.title}}</td>
+                                <td>{{video.beboVideo.description}}</td>
                                 <td><button id="btnRemove" class="btn btn-xs btn-danger" data-ng-click="removeVideo(video.key)">Remove</button></td>
                             </tr>
                             <tr>
@@ -59,20 +59,20 @@
             <br />
             <div class="row" data-ng-show="addNewVideo">
                 <div class="col-xs-6">
-                    <form class="form-horizontal" data-novalidate="novalidate" name="vevoForm" role="form" data-ng-submit="addVideo()">
+                    <form class="form-horizontal" data-novalidate="novalidate" name="BeboForm" role="form" data-ng-submit="addVideo()">
 	                    <div class="form-group">
 		                    <label id="title" class="col-xs-2 control-label">Title</label>
 		                    <div class="col-xs-5">
 			                    <input type="text" placeholder="Enter Video Title" class="form-control" name="title" data-ng-model="title" data-required="required"/>                                
 		                    </div>
-                            <div class="col-xs-2"><small class="label label-danger" data-ng-show="vevoForm.title.$error.required && formSubmitted"><small class="glyphicon glyphicon-alert" title="required"></small></small></div>
+                            <div class="col-xs-2"><small class="label label-danger" data-ng-show="BeboForm.title.$error.required && formSubmitted"><small class="glyphicon glyphicon-alert" title="required"></small></small></div>
 	                    </div>
 	                    <div class="form-group">
 		                    <label id ="description" class="col-xs-2 control-label">Description</label>
 		                    <div class="col-xs-5">
 			                    <input type="text" placeholder="Enter Description" class="form-control" name="description" data-ng-model="description" data-required="required"/>                                
 		                    </div>
-                            <div class="col-xs-2"><small class="label label-danger" data-ng-show="vevoForm.description.$error.required && formSubmitted"><small class="glyphicon glyphicon-alert" title="required"></small></small></div>
+                            <div class="col-xs-2"><small class="label label-danger" data-ng-show="BeboForm.description.$error.required && formSubmitted"><small class="glyphicon glyphicon-alert" title="required"></small></small></div>
 	                    </div>	                    
 	                    <div class="form-group">
                             <div class="col-xs-4 col-xs-offset-2">
@@ -91,7 +91,7 @@
         <script src="Scripts/bootstrap.js"></script>
         <script src="Scripts/angular.js"></script>
         <script src="Scripts/angular-ng-grid.js"></script>
-        <script src="Scripts/app/vevo.js"></script>
+        <script src="Scripts/app/Bebo.js"></script>
         <script src="Scripts/app/factory.js"></script>
         <script src="Scripts/app/main.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

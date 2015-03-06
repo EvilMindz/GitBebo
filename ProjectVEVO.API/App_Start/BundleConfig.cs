@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace ProjectVEVO.API
+namespace ProjectBebo.API
 {
     public class BundleConfig
     {

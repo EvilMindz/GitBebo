@@ -1,18 +1,18 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ProjectVEVO.API.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ProjectVEVO.API.NinjectWebCommon), "Stop")]
+using System;
+using System.Web;
+using System.Web.Http;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
+using Ninject.Web.Common;
+using ProjectBebo.API;
+using ProjectBebo.BL;
+using WebActivatorEx;
 
-namespace ProjectVEVO.API
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
+
+namespace ProjectBebo.API
 {
-    using System;
-    using System.Web;
-    using System.Web.Http;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-    using ProjectVEVO.BL;
-
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();

@@ -1,2 +1,7 @@
 ﻿body {
 }
+
+.imgBebo {
+    max-height: auto;
+    width: 100px;   
+}

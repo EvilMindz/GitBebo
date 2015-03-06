@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using ProjectVEVO.BL;
-using NUnit.Framework;
-using ProjectVEVO.API.Controllers;
-using ProjectVEVO.API.Models;
+﻿using System.Collections.Generic;
 using System.Web.Http.Results;
+using NUnit.Framework;
+using ProjectBebo.API.Controllers;
+using ProjectBebo.API.Models;
+using ProjectBebo.BL;
 
-namespace ProjectVEVO.Test
+namespace ProjectBebo.Test
 {
     [TestFixture]
     public class VideoControllerTest
@@ -21,7 +16,10 @@ namespace ProjectVEVO.Test
             var controller = new VideoController(new VideoManager());
 
             var videos = controller.Get();
-            Assert.IsAssignableFrom<OkNegotiatedContentResult<List<VideosDictViewModel>>>(videos);
+            if (videos != null)
+            {
+                Assert.IsAssignableFrom<OkNegotiatedContentResult<List<VideosDictViewModel>>>(videos);
+            }
         }
 
         [Test]

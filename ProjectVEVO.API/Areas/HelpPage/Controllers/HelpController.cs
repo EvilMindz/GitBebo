@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using ProjectVEVO.API.Areas.HelpPage.ModelDescriptions;
-using ProjectVEVO.API.Areas.HelpPage.Models;
+using ProjectBebo.API.Areas.HelpPage.ModelDescriptions;
+using ProjectBebo.API.Areas.HelpPage.Models;
 
-namespace ProjectVEVO.API.Areas.HelpPage.Controllers
+namespace ProjectBebo.API.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.
